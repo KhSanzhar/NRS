@@ -1,0 +1,37 @@
+
+<div class = "top-bar">
+  <!-- here should be routerlink be added to home page + Logo image -->
+  <a id = "logo" href="">
+    <img class = "logo-img" src="assets/logo-img.png" alt="NRS Logo">
+  </a> 
+  
+  <div class = "search-box">
+      <form>
+        <input type="search" placeholder="Хочу посмотреть ....">
+        <button class = "search-button">
+          Search
+        </button>
+      </form>
+  </div>
+
+</div>
+
+
+<div class="main-side">
+
+  <div class="left-bar">
+
+  </div>
+
+  <div class="video-block">
+    <!--- NGFOR for vidios that were taken from database (example)---> 
+    <div class="video-container" *ngFor="let video of videos">
+      <a href="/video/{{video.id}}">
+        <img src="https://via.placeholder.com/480x270.png?text={{video.title}}" alt="video.title">
+        <h2>Video 1</h2>
+      </a>
+    </div>
+
+  </div>
+
+</div>

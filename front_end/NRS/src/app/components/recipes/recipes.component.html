@@ -1,1 +1,30 @@
-<p>recipes works!</p>
+<div class="recipes">
+  <h2 class="page-title">Рецепты</h2>
+  <div class="categories-list">
+    <div class="category">
+      <button class="btn btn-link" (click)="selectCategory(null)" [class.active]="selectedCategory === null">Все</button>
+    </div>
+    <div class="category" *ngFor="let category of categories">
+      <button class="btn btn-link" (click)="selectCategory(category)" [class.active]="selectedCategory === category">{{ category }}</button>
+    </div>
+  </div>
+
+  <div class="recipes-list">
+    <div class="recipe-card" *ngFor="let recipe of recipesToShow">
+      <div class="recipe-image">
+        <img [src]="recipe.image" alt="{{ recipe.title }}">
+      </div>
+      <div class="recipe-details">
+        <h3 class="recipe-title">{{ recipe.title }}</h3>
+        <div class="recipe-category">{{ recipe.category }}</div>
+        <div class="recipe-description">{{ recipe.description }}</div>
+        <ul class="recipe-ingredients">
+          <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name }} - {{ ingredient.amount }}</li>
+        </ul>
+        <ul class="recipe-instructions">
+          <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,10 @@ import { MyRecipesComponent } from './components/my-recipes/my-recipes.component
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AddRecipeComponent } from './components/add-recipe/add-recipe.component';
+import {FormsModule} from "@angular/forms";
+import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 
 @NgModule({
@@ -18,12 +22,16 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     MyRecipesComponent,
     RecipesComponent,
     AboutUsComponent,
-    SignUpComponent
+    SignUpComponent,
+    AddRecipeComponent,
+    RecipeDetailComponent,
+    SignInComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

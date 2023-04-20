@@ -1,3 +1,5 @@
+/*background: linear-gradient(to bottom, #F7E9D9, #D7BFA6); мощьный градиент*/
+
 #topspace {
   height: 20vh;
 }
@@ -26,7 +28,7 @@
       padding: 0 2.5%;
       text-align: center;
     }
-      
+
       .text-cont h1{
         size: 15px;
       }
@@ -34,7 +36,7 @@
     .desc-cont img {
       width: 40vw;
       height: 50vh;
-      
+
     }
 
   /*.chouse-cont{

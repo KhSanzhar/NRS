@@ -1,1 +1,24 @@
-<p>my-recipes works!</p>
+<div>
+  <button><a routerLink="/add-recipe">Добавить рецепт</a></button>
+</div>
+<div class="my-recipes">
+  <h2 class="page-title">Мои рецепты</h2>
+  <div class="recipes-list">
+    <div class="recipe-card" *ngFor="let recipe of recipes">
+      <div class="recipe-image">
+        <img [src]="recipe.image" alt="{{ recipe.title }}">
+      </div>
+      <div class="recipe-details">
+        <h3 class="recipe-title">{{ recipe.title }}</h3>
+        <div class="recipe-category">{{ recipe.category }}</div>
+        <div class="recipe-description">{{ recipe.description }}</div>
+        <ul class="recipe-ingredients">
+          <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name }} - {{ ingredient.amount }}</li>
+        </ul>
+        <ul class="recipe-instructions">
+          <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

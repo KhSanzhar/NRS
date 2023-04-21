@@ -1,0 +1,58 @@
+.add-recipe-form {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 20px;
+  width: 70%;
+  margin: auto;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  width: 100%;
+  padding: 5px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button[type="button"] {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+button[type="button"]:hover {
+  background-color: #3e8e41;
+}

@@ -32,7 +32,7 @@ class IngredientSerializer(serializers.Serializer):
 
 class RecipeSerializer(serializers.ModelSerializer):
     author = ProfileSerializer(default=serializers.CurrentUserDefault())
-    categories = serializers.CharField()
+    categories = CategorySerializer(many=True)
 
     class Meta:
         model=Recipe

@@ -1,8 +1,8 @@
-<div>
-  <button><a id = "add" routerLink="/add-recipe">Добавить рецепт</a></button>
-</div>
 <div class="my-recipes">
   <h2 class="page-title">Мои рецепты</h2>
+  <div>
+    <button><a id = "add" routerLink="/add-recipe">Добавить рецепт</a></button>
+  </div>
   <div class="recipes-list">
     <div class="recipe-card" *ngFor="let recipe of recipes">
       <div class="recipe-image">

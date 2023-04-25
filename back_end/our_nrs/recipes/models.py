@@ -4,10 +4,17 @@ from users.models import Profile
 
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+
+
+
+
 class Recipe(models.Model):
     name = models.CharField(max_length=255)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
     steps = models.TextField()
+    categories = models.ManyToManyField(Category)
     created_at = models.DateTimeField(auto_now_add=True)
     #images = models.ImageField(upload_to='images/', blank=True)
     #rating = 
@@ -16,7 +23,6 @@ class Recipe(models.Model):
     def __str__(self):
         return self.name
 
-
 class Ingredient(models.Model):
     name = models.CharField(max_length=255)
     amount =  models.CharField(max_length=15)
@@ -24,6 +30,4 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
-
-
 

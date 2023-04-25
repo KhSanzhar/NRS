@@ -3,8 +3,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import status
+
 
 from .serializers import ProfileSerializer, UserSerializer
 
@@ -22,7 +26,7 @@ def register(request):
         profile_serilizer = ProfileSerializer(data=request.data)
         profile_serilizer.is_valid(raise_exception=True)
         profile_serilizer.save(user=user)
-        return Response(profile_serilizer.data)
+        return Response("REGISTRATION COMPLETE", status=201)
     return Response(user_serializer.errors)
 
 
@@ -41,6 +45,21 @@ def change_password(request):
     return Response({'detail': 'Password changed successfully.'})
 
 
+#USER LOGOUT
+
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(e, status=status.HTTP_400_BAD_REQUEST)
+
 """
 #USER PROFILE UPDATE (only image and bio, can be modiffied)
 @api_view(['PUT'])
@@ -58,19 +77,3 @@ def update_profile(request):
 
 
 
-"""
-#LOGIN
-@api_view(['POST'])
-def login(request):
-    serializer = UserSerializer(data=request.data)
-    if serializer.is_valid():
-        username = serializer.validated_data['username']
-        password = serializer.validated_data['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return Response({'message': 'Login successful'})
-        else:
-            return Response({'message': 'Invalid username or password'})
-    return Response(serializer.errors)
-"""

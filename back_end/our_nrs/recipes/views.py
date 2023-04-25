@@ -3,8 +3,8 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAuthenticatedOrReadOnly
 from django.shortcuts import get_object_or_404
 
-from .models import Recipe
-from .serializers import RecipeSerializer
+from .models import Recipe, Category, Ingredient
+from .serializers import RecipeSerializer, CategorySerializer, IngredientSerializer
 from .premissions import IsOwnerOrReadOnly
 
 # Create your views here.
@@ -41,3 +41,6 @@ class MyRecipeListView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
+class CategoryList(generics.ListAPIView):
+    serializer_class=CategorySerializer
+    premission_class = (AllowAny, )

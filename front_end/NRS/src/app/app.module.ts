@@ -12,6 +12,7 @@ import { AddRecipeComponent } from './components/add-recipe/add-recipe.component
 import {FormsModule} from "@angular/forms";
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

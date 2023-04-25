@@ -31,11 +31,11 @@ class RecipeDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class MyRecipeListView(generics.ListCreateAPIView):
     serializer_class =  RecipeSerializer
-    premission_class = (IsAuthenticatedOrReadOnly, )
+    premission_class = (IsAuthenticated, )
 
     def get_queryset(self):
-        user = self.recipe.user
-        queryset = self.queryset.filter(author=user)
+        user = self.request.user
+        queryset = Recipe.objects.filter(author=user.profile)
         return queryset
 
     def perform_create(self, serializer):

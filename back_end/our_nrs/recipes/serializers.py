@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Recipe
+from .models import Recipe, Category
 from users.serializers import ProfileSerializer
 
 
@@ -32,7 +32,7 @@ class IngredientSerializer(serializers.Serializer):
 
 class RecipeSerializer(serializers.ModelSerializer):
     author = ProfileSerializer(default=serializers.CurrentUserDefault())
-    categories = CategorySerializer(many=True)
+    categories = serializers.CharField()
 
     class Meta:
         model=Recipe

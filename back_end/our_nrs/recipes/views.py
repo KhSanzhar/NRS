@@ -39,7 +39,7 @@ class MyRecipeListView(generics.ListCreateAPIView):
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+        serializer.save(author=self.request.user.author)
 
 class CategoryList(generics.ListAPIView):
     serializer_class=CategorySerializer

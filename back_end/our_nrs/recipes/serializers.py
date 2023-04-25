@@ -8,9 +8,9 @@ class CategorySerializer(serializers.Serializer):
     name = serializers.CharField(max_length=50, read_only=True)
 
     def to_representation(self, instance):
-        return {
-            'name': instance.name
-        }
+        return instance.save()
+
+
 
 class IngredientSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -31,26 +31,32 @@ class IngredientSerializer(serializers.Serializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    author = ProfileSerializer(default=serializers.CurrentUserDefault())
-    categories = CategorySerializer(many=True)
+    author = ProfileSerializer(default=serializers.CurrentUserDefault(), read_only=True)
+
 
     class Meta:
         model=Recipe
         fields = ['id', 'name', 'steps', 'created_at', 'author', 'categories']
 
     def create(self, validated_data):
-        categories = validated_data.pop('categories', [])
+        categories_data = validated_data.pop('categories', [])
         recipe = Recipe.objects.create(**validated_data)
-        for category in categories:
-            new_category = Category.objects.create(**category)
-            recipe.categories.add(new_category)
+        for category_name in categories_data:
+            category = Category.objects.get(name=category_name)
+            recipe.categories.add(category)
         return recipe
 
     def update(self, instance, validated_data):
-        categories = validated_data.pop('categories', [])
-        instance = super().update(instance, validated_data)
-        instance.categories.clear()
-        for category in categories:
-            new_category = Category.objects.create(**category)
-            instance.categories.add(new_category)
+        categories_data = validated_data.pop('categories', [])
+        super().update(instance, validated_data)
+        for category_name in categories_data:
+            category = Category.objects.get(name=category_name)
+            instance.categories.add(category)
         return instance
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        categories = representation.get('categories', [])
+        representation['categories'] = [name for name in categories]
+        return representation
+

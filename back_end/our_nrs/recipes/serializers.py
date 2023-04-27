@@ -7,9 +7,6 @@ class CategorySerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=50, read_only=True)
 
-    def to_representation(self, instance):
-        return instance.save()
-
 
 
 class IngredientSerializer(serializers.Serializer):
@@ -32,6 +29,7 @@ class IngredientSerializer(serializers.Serializer):
 
 class RecipeSerializer(serializers.ModelSerializer):
     author = ProfileSerializer(default=serializers.CurrentUserDefault(), read_only=True)
+    categories = serializers.ListSerializer(child=serializers.CharField())
 
 
     class Meta:

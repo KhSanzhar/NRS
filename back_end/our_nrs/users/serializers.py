@@ -21,14 +21,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
-    ''' Image validation
-    image = serializers.ImageField(
-        allowed_types=['image/jpeg', 'image/png'],
-        max_length=10 * 1024 * 1024,  # 10 MB
-        max_width=1920,
-        max_height=1080
-    )
-    '''
 
     class Meta:
         model = Profile

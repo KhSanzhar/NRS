@@ -17,6 +17,14 @@ from .models import Profile
 from django.contrib.auth.models import User
 
 
+#Get PROFILE
+@api_view(['GET'])
+def profile_details(request):
+    user = request.user
+    profile = Profile.objects.get(user=user)
+    serializer = ProfileSerializer(profile)
+    return Response(serializer.data)
+
 
 #USER REGISTRATION
 @api_view(['POST'])
@@ -62,20 +70,21 @@ class LogoutView(APIView):
         token.blacklist()
         return Response({"LOGOUT"})
 
-"""
+
 #USER PROFILE UPDATE (only image and bio, can be modiffied)
 @api_view(['PUT'])
+@login_required
 def update_profile(request):
     profile = Profile.objects.get(user = request.user)
     serializer = ProfileSerializer(profile, data = request.data, partial=True)
     serializer.is_valid(raise_exception=True)
-    allowed_fields = {'bio': request.data.get('bio'), 'image': request.data.get('image')}
+    allowed_fields = {'image': request.data.get('image')}
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OaK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST
-)"""
+)
 
 
 

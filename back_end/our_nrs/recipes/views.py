@@ -13,10 +13,20 @@ class RecipeListView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Recipe.objects.all().select_related('author')
+        return Recipe.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user.profile)
+
+
+class CategoryRecipeListView(generics.ListAPIView):
+    serializer_class = RecipeSerializer
+    premission_class = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        pk = self.kwargs.get('pk')
+        queryset = Recipe.objects.filter(categories = pk)
+        return queryset
 
 class RecipeDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RecipeSerializer
@@ -39,8 +49,9 @@ class MyRecipeListView(generics.ListCreateAPIView):
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user.author)
+        serializer.save(author=self.request.user.profile)
 
 class CategoryList(generics.ListAPIView):
     serializer_class=CategorySerializer
+    queryset = Category.objects.all()
     premission_class = (AllowAny, )

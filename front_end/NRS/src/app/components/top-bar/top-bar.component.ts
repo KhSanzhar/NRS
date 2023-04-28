@@ -11,6 +11,8 @@ export class TopBarComponent {
   constructor(public authService: AuthService) {
   }
 
+
+
   logout(): void {
     this.authService.logout();
   }

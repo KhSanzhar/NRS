@@ -17,13 +17,15 @@ export class RecipesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.recipes = this.recipeService.getRecipes();
-    this.categories = this.getCategories();
+    this.recipeService.getRecipes().subscribe((recipes) => {
+      this.recipes = recipes;
+      // this.categories = this.getCategories();
+    });
 
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const category = params.get('category');
 
-      if(category) {
+      if (category) {
         this.selectedCategory = category;
       } else {
         this.selectedCategory = null;
@@ -31,24 +33,25 @@ export class RecipesComponent implements OnInit{
     });
   }
 
+
+
   getCategories(): string[] {
     const categories: string[] = [];
 
-    for(const recipe of this.recipes) {
-      if(!categories.includes(recipe.category)) {
+    for (const recipe of this.recipes) {
+      if (!categories.includes(recipe.category)) {
         categories.push(recipe.category);
       }
     }
 
     return categories;
   }
-
   getRecipesByCategory(category: string): Recipe[] {
-    return this.recipes.filter(recipe => recipe.category === category)
+    return this.recipes.filter((recipe) => recipe.category === category);
   }
 
   get recipesToShow(): Recipe[] {
-    if(this.selectedCategory) {
+    if (this.selectedCategory) {
       return this.getRecipesByCategory(this.selectedCategory);
     } else {
       return this.recipes;

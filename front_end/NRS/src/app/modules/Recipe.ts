@@ -3,7 +3,7 @@ interface Ingredient {
   amount: string;
 }
 export interface Recipe {
-  id: number;
+  id?: number;
   title: string;
   category: string;
   description: string;

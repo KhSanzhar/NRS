@@ -12,7 +12,10 @@ import { AddRecipeComponent } from './components/add-recipe/add-recipe.component
 import {FormsModule} from "@angular/forms";
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
+import {AuthService} from "./services/auth.service";
+import {AuthGuard} from "./services/auth.guard";
+import {TokenInterceptor} from "./services/token.interceptor";
 
 
 @NgModule({
@@ -34,7 +37,11 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
         FormsModule,
         HttpClientModule
     ],
-  providers: [],
+  providers: [AuthService, AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

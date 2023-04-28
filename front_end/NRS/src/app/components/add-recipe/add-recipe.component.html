@@ -1,9 +1,9 @@
 <div class="add-recipe-form">
   <h2 class="form-title">Добавить рецепт</h2>
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="recipe-name">Название рецепта:</label>
-      <input type="text" id="recipe-name" name="recipe-name" [(ngModel)]="recipe.title" required>
+      <label for="recipe-title">Название рецепта:</label>
+      <input type="text" id="recipe-title" name="recipe-title" [(ngModel)]="recipe.title" required>
     </div>
     <div class="form-group">
       <label for="recipe-category">Категория:</label>
@@ -29,7 +29,7 @@
       <img [src]="recipe.image" alt="Recipe Image">
     </div>
     <div class="form-buttons">
-      <button type="button" (click)="addRecipe()">Добавить рецепт</button>
+      <button type="submit" (click)="onSubmit()">Добавить рецепт</button>
       <button type="button" (click)="cancel()">Отмена</button>
     </div>
   </form>

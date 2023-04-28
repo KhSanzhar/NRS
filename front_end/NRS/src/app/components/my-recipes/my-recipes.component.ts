@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { RecipeServiceService } from "../../services/recipe-service.service";
 import { Recipe} from "../../modules/Recipe";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-my-recipes',
@@ -11,9 +12,28 @@ export class MyRecipesComponent implements OnInit{
 
   recipes: Recipe[] = [];
 
-  constructor(private recipeService: RecipeServiceService) {
+  constructor(private recipeService: RecipeServiceService, private authService: AuthService) {
   }
   ngOnInit(): void {
-    this.recipes = this.recipeService.getRecipes();
+    this.getMyRecipes();
   }
+
+  getMyRecipes(): void {
+    this.recipeService.getRecipes().subscribe(
+      recipes => {
+        this.recipes = recipes;
+      }
+    )
+  }
+
+  deleteRecipe(id: number | null): void {
+    if (confirm("Вы уверены, что хотите удалить этот рецепт?") && id !== null) {
+      this.recipeService.deleteRecipe(id).subscribe(() => {
+        this.recipes = this.recipes.filter(recipe => recipe.id !== id);
+      });
+    }
+  }
+
+
+
 }

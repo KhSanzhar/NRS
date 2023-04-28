@@ -8,15 +8,16 @@ import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import {AddRecipeComponent} from "./components/add-recipe/add-recipe.component";
 import {RecipeDetailComponent} from "./components/recipe-detail/recipe-detail.component";
 import {SignInComponent} from "./components/sign-in/sign-in.component";
+import {AuthGuard} from "./services/auth.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'my-recipes', component: MyRecipesComponent},
+  {path: 'my-recipes', component: MyRecipesComponent, canActivate: [AuthGuard]},
   {path: 'recipes', component: RecipesComponent},
   {path: 'about-us', component: AboutUsComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'add-recipe', component: AddRecipeComponent},
+  {path: 'add-recipe', component: AddRecipeComponent, canActivate: [AuthGuard]},
   {path: 'recipes/:category', component: RecipesComponent},
   {path: 'detail/:id', component: RecipeDetailComponent}
 ];

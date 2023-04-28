@@ -18,7 +18,13 @@
         <ul class="recipe-instructions">
           <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
         </ul>
+        <div class="recipe-actions">
+          <button (click)="recipe && recipe.id && deleteRecipe(recipe.id)">Удалить</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+

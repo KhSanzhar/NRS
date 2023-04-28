@@ -24,12 +24,22 @@ export class AuthService {
       })
     };
 
+
+    const token = this.getToken();
+    console.log('Authorization: ', `Bearer ${token}`);
+
+
+
     return this.http.post<Token>(`${this.apiUrl}login/`, data, httpOptions).pipe(
       tap((response: Token) => {
-          localStorage.setItem(this.TOKEN_KEY, response.access_token);
+          localStorage.setItem(this.TOKEN_KEY, response.access);
         })
     );
+
+
   }
+
+
 
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
@@ -39,8 +49,9 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY) !== null;
   }
 
-  getToken(): string | null {
+  getToken(): string {
     const token = localStorage.getItem(this.TOKEN_KEY);
-    return token ? `Bearer ${token}` : null;
+    return token ? token : '';
   }
+
 }

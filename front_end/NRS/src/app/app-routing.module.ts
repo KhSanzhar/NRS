@@ -18,8 +18,8 @@ const routes: Routes = [
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'add-recipe', component: AddRecipeComponent, canActivate: [AuthGuard]},
-  {path: 'recipes/:category', component: RecipesComponent},
-  {path: 'detail/:id', component: RecipeDetailComponent}
+  {path: 'recipes/:category', component: RecipesComponent, canActivate: [AuthGuard]},
+  {path: 'detail/:id', component: RecipeDetailComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

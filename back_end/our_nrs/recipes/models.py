@@ -16,6 +16,7 @@ class Recipe(models.Model):
     name = models.CharField(max_length=255)
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
     steps = models.TextField()
+    description = models.TextField()
     categories = models.ManyToManyField(Category)
     created_at = models.DateTimeField(auto_now_add=True)
     #images = models.ImageField(upload_to='images/', blank=True)

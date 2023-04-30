@@ -1,5 +1,7 @@
 from django.db import models
 from users.models import Profile
+from PIL import Image
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -19,12 +21,17 @@ class Recipe(models.Model):
     description = models.TextField()
     categories = models.ManyToManyField(Category)
     created_at = models.DateTimeField(auto_now_add=True)
-    #images = models.ImageField(upload_to='images/', blank=True)
-    #rating = 
-
+    image = models.ImageField(upload_to = 'recipeimages/', default='recipeimages/default.png')
+    likes = models.ManyToManyField(User, related_name='recipeLike')
 
     def __str__(self):
         return self.name
+
+    def all_likes(self):
+        return self.likes.count()
+
+
+
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=255)
@@ -33,4 +40,3 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
-

@@ -1,8 +1,12 @@
 from rest_framework import serializers
 from .models import Comment
+from users.serializers import ProfileSerializer
 
 class CommentSerializer(serializers.ModelSerializer):
+    author = ProfileSerializer(default=serializers.CurrentUserDefault(), read_only=True)
+
+
     class Meta:
         model = Comment
-        fields = '__all__'
-        read_only_fields = ['id', 'user', 'recipe', 'created_at']
+        fields =['id', 'author', 'recipe', 'created_at', 'text']
+        read_only_fields = ['id', 'author', 'recipe', 'created_at']

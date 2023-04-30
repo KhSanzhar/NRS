@@ -4,7 +4,7 @@ from .views import CommentDetailView, RecipeComentsListView
 
 urlpatterns = [
     path('comment/', RecipeComentsListView.as_view(), name='comments'),
-    path('comment/<int:pk>/', CommentDetailView.as_view(), name='updateComment')
+    path('comment/<int: id>/', CommentDetailView.as_view(), name='updateComment')
 ]
 
 

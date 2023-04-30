@@ -1,14 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
-
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required
-from rest_framework.decorators import api_view
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
 
 
 from .serializers import ProfileSerializer, UserSerializer
@@ -41,7 +38,7 @@ def register(request):
 
 #USER PASSWORD UPDATE
 @api_view(['POST'])
-@login_required
+@permission_classes((IsAuthenticated, ))
 def change_password(request):
     user = request.user
     current_password = request.data.get('current_password')
@@ -55,7 +52,7 @@ def change_password(request):
 
 
 #USER LOGOUT
-
+@permission_classes((IsAuthenticated, ))
 class LogoutView(APIView):
     permission_classes = (IsAuthenticated,)
 
@@ -73,7 +70,7 @@ class LogoutView(APIView):
 
 #USER PROFILE UPDATE (only image and bio, can be modiffied)
 @api_view(['PUT'])
-@login_required
+@permission_classes((IsAuthenticated, ))
 def update_profile(request):
     profile = Profile.objects.get(user = request.user)
     serializer = ProfileSerializer(profile, data = request.data, partial=True)

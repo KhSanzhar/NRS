@@ -9,5 +9,4 @@ class Comment(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='comments')
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    #???Images, create image model to store list of images if required???
 

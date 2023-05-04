@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../modules/User";
 import {UserService} from "../../services/user.service";
@@ -9,12 +9,31 @@ import {UserService} from "../../services/user.service";
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.css']
 })
-export class TopBarComponent {
+export class TopBarComponent implements OnInit{
 
+
+  user: User = {
+    id: 0,
+    name: '',
+    image: ''
+  }
   constructor(public authService: AuthService, private userservice: UserService) {
   }
 
   logout(): void {
     this.authService.logout();
   }
+
+  ngOnInit() {
+    this.userservice.getUserInfo().subscribe(
+      (user: User) => {
+        this.user = user;
+      },
+      error => {
+        console.log('Failed to get user_info: ', error);
+      }
+    )
+  }
+
+
 }

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import {Token} from '../modules/token';
+import {User} from "../modules/User";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ export class AuthService {
 
   private readonly TOKEN_KEY = 'myapp-token';
   private apiUrl = 'http://localhost:8000/profile/';
+
+
 
   // private logoutUrl = 'http://localhost:8000/profile/logout/';
 
@@ -35,8 +38,6 @@ export class AuthService {
           localStorage.setItem(this.TOKEN_KEY, response.access);
         })
     );
-
-
   }
 
   logout(): void {

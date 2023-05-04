@@ -9,7 +9,7 @@
 
   <button *ngIf="authService.isAuthenticated()" (click)="logout()">Log out</button>
 
-<!--  <a *ngIf="authService.isAuthenticated" routerLink="/account">{{ user.name }}</a>-->
+<!--  <a *ngIf="authService.isAuthenticated" routerLink="/account" style="color: #4CAF50; float: right">{{ user.name }}</a>-->
 
   <a *ngIf="!authService.isAuthenticated()" routerLink="/sign-up" style="float:right">Sign up</a>
 

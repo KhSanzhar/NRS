@@ -10,16 +10,29 @@ import {AuthService} from "./auth.service";
 export class UserService {
 
   profileUrl = 'http://localhost:8000/profile/';
+
+  private currentUser: User | null = null;
   constructor(private http:HttpClient, private authService: AuthService) { }
 
-  getUserInfo(userId: number): Observable<User>{
+
+  setCurrentUser(user: User): void {
+    this.currentUser = user;
+  }
+
+  getUserName():string {
+    if(this.currentUser) {
+      return this.currentUser.name;
+    }
+    return '';
+  }
+  getUserInfo(): Observable<User>{
     const token = this.authService.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       })
     }
-    return this.http.get<User>(`${this.profileUrl}/${userId}`, httpOptions);
+    return this.http.get<User>(`${this.profileUrl}`, httpOptions);
   }
+
 }

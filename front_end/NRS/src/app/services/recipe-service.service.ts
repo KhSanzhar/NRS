@@ -29,26 +29,24 @@ export class RecipeServiceService {
   }
 
   addRecipe(recipe: Recipe, selectedFile: File) {
-    const formData = new FormData();
-    formData.append('name', recipe.title);
-    formData.append('categories', JSON.stringify(recipe.category));
-    formData.append('description', recipe.description);
-    formData.append('ingredients', JSON.stringify(recipe.ingredients));
-    formData.append('steps', JSON.stringify(recipe.steps));
-    formData.append('image', selectedFile, selectedFile.name);
+    const payload = {
+      name: recipe.title,
+      categories: recipe.category,
+      description: recipe.description,
+      ingredients: recipe.ingredients,
+      steps: recipe.steps,
+      image: selectedFile
+    };
 
-    for (const pair of formData.entries()) {
-      console.log(`${pair[0]}, ${pair[1]}`);
-    }
-    // for (const key of formData.keys()) {
-    //   console.log(key);
-    // }
+
+
 
     const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${this.authService.getToken()}`
     });
 
-    return this.http.post<Recipe>(`${this.apiUrl}/recipes/`, formData, {
+    return this.http.post<Recipe>(`${this.apiUrl}/recipes/`, JSON.stringify(payload), {
       headers,
       reportProgress: true,
       observe: 'events'

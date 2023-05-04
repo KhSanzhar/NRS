@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Recipe} from "../../modules/Recipe";
+import {Category, Recipe} from "../../modules/Recipe";
 import {RecipeServiceService} from "../../services/recipe-service.service";
 import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-recipes',
@@ -10,9 +11,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class RecipesComponent implements OnInit{
   recipes: Recipe[] = [];
-  categories: string[] = [];
+  categories: Category[] = [];
 
-  selectedCategory: string | null = null;
   constructor(private recipeService: RecipeServiceService, private route: ActivatedRoute) {
   }
 
@@ -22,43 +22,42 @@ export class RecipesComponent implements OnInit{
       // this.categories = this.getCategories();
     });
 
-    this.route.paramMap.subscribe((params) => {
-      const category = params.get('category');
+    this.getCategories();
+  }
 
-      if (category) {
-        this.selectedCategory = category;
-      } else {
-        this.selectedCategory = null;
+
+
+  getCategories() {
+    this.recipeService.getCategories().subscribe(
+      (categories: Category[]) => {
+        this.categories = categories;
+      },
+        error => {
+        console.error('Failed to get categories: ', error);
       }
-    });
+    )
   }
 
-
-
-  getCategories(): string[] {
-    const categories: string[] = [];
-
-    for (const recipe of this.recipes) {
-      if (!categories.includes(recipe.category)) {
-        categories.push(recipe.category);
+  getRecipesForCategory(categoryId: number): void {
+    this.recipeService.getRecipesByCategory(categoryId).subscribe(
+      (recipes: Recipe[]) => {
+        this.recipes = recipes;
+      },
+      error => {
+        console.error('Failed to get Recipes: ', error);
       }
-    }
-
-    return categories;
-  }
-  getRecipesByCategory(category: string): Recipe[] {
-    return this.recipes.filter((recipe) => recipe.category === category);
+    )
   }
 
-  get recipesToShow(): Recipe[] {
-    if (this.selectedCategory) {
-      return this.getRecipesByCategory(this.selectedCategory);
-    } else {
-      return this.recipes;
-    }
-  }
-  selectCategory(category: string | null): void {
-    this.selectedCategory = category;
+  getAllRecipes(): void {
+    this.recipeService.getAllRecipes().subscribe(
+      (recipes: Recipe[]) => {
+        this.recipes = recipes;
+      },
+      error => {
+        console.error('Failed to get all recipes: ', error);
+      }
+    )
   }
 
 }

@@ -7,7 +7,9 @@
     </div>
     <div class="form-group">
       <label for="recipe-category">Категория:</label>
-      <input type="text" id="recipe-category" name="recipe-category" [(ngModel)]="recipe.category" required>
+      <select id="recipe-category" [(ngModel)]="selectedCategory" name="recipe-category" required>
+        <option *ngFor="let category of categories" [ngValue]="category.name">{{category.name}}</option>
+      </select>
     </div>
     <div class="form-group">
       <label for="recipe-description">Описание:</label>
@@ -15,22 +17,73 @@
     </div>
     <div class="form-group">
       <label for="recipe-ingredients">Ингредиенты:</label>
-      <textarea id="recipe-ingredients" name="recipe-ingredients" [(ngModel)]="recipe.ingredients" required></textarea>
+      <div id="recipe-ingredients" *ngFor="let ingredient of recipe.ingredients; let i = index">
+        <label>Ингредиент {{i + 1}}:</label>
+        <input type="text" name="ingredient-name-{{i}}" [(ngModel)]="ingredient.name" placeholder="Название" required>
+        <input type="text" name="ingredient-amount-{{i}}" [(ngModel)]="ingredient.amount" placeholder="Количество" required>
+      </div>
+      <button type="button" (click)="addIngredient()">Добавить ингредиент</button>
     </div>
     <div class="form-group">
       <label for="recipe-instructions">Инструкции:</label>
-      <textarea id="recipe-instructions" name="recipe-instructions" [(ngModel)]="recipe.instructions" required></textarea>
+      <div id="recipe-instructions" *ngFor="let step of recipe.steps; let i = index">
+        <label> {{i + 1}}:</label>
+        <input type="text" name="step-{{i}}" [(ngModel)]="recipe.steps[i]" placeholder="шаг" required>
+      </div>
+      <button type="button" (click)="addStep()">Добавить шаг</button>
     </div>
     <div class="form-group">
       <label for="recipe-image">Фото:</label>
       <input type="file" id="recipe-image" name="recipe-image" (change)="onFileSelected($event)">
     </div>
-    <div class="form-group">
+    <div *ngIf="recipe.image" class="form-group">
       <img [src]="recipe.image" alt="Recipe Image">
     </div>
     <div class="form-buttons">
-      <button type="submit" (click)="onSubmit()">Добавить рецепт</button>
+      <button type="submit">Добавить рецепт</button>
       <button type="button" (click)="cancel()">Отмена</button>
     </div>
   </form>
 </div>
+
+
+
+<!--<div class="add-recipe-form">-->
+<!--  <h2 class="form-title">Добавить рецепт</h2>-->
+<!--  <form (ngSubmit)="onSubmit()">-->
+<!--    <div class="form-group">-->
+<!--      <label for="recipe-title">Название рецепта:</label>-->
+<!--      <input type="text" id="recipe-title" name="recipe-title" [(ngModel)]="recipe.title" required>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="recipe-category">Категория:</label>-->
+<!--&lt;!&ndash;      <input type="text" id="recipe-category" name="recipe-category" [(ngModel)]="recipe.category" required>&ndash;&gt;-->
+<!--      <select type="text" id="recipe-category" [(ngModel)]="recipe.category" name="recipe-category" required>-->
+<!--        <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="recipe-description">Описание:</label>-->
+<!--      <textarea id="recipe-description" name="recipe-description" [(ngModel)]="recipe.description" required></textarea>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="recipe-ingredients">Ингредиенты:</label>-->
+<!--      <textarea id="recipe-ingredients" name="recipe-ingredients" [(ngModel)]="recipe.ingredients" required></textarea>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="recipe-instructions">Инструкции:</label>-->
+<!--      <textarea id="recipe-instructions" name="recipe-instructions" [(ngModel)]="recipe.steps" required></textarea>-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--      <label for="recipe-image">Фото:</label>-->
+<!--      <input type="file" id="recipe-image" name="recipe-image" (change)="onFileSelected($event)">-->
+<!--    </div>-->
+<!--    <div *ngIf="recipe.image" class="form-group">&lt;!&ndash; здесь надо поработать&ndash;&gt;-->
+<!--      <img [src]="recipe.image" alt="Recipe Image">-->
+<!--    </div>-->
+<!--    <div class="form-buttons">-->
+<!--      <button type="submit" (click)="onSubmit()">Добавить рецепт</button>-->
+<!--      <button type="button" (click)="cancel()">Отмена</button>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</div>-->

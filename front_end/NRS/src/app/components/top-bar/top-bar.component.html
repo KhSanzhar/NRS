@@ -9,6 +9,8 @@
 
   <button *ngIf="authService.isAuthenticated()" (click)="logout()">Log out</button>
 
+<!--  <a *ngIf="authService.isAuthenticated" routerLink="/account">{{ user.name }}</a>-->
+
   <a *ngIf="!authService.isAuthenticated()" routerLink="/sign-up" style="float:right">Sign up</a>
 
   <a *ngIf="!authService.isAuthenticated()" routerLink="/sign-in" style="float:right">Sign in</a>

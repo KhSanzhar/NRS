@@ -16,6 +16,7 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/h
 import {AuthService} from "./services/auth.service";
 import {AuthGuard} from "./services/auth.guard";
 import {TokenInterceptor} from "./services/token.interceptor";
+import { AccountComponent } from './components/account/account.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {TokenInterceptor} from "./services/token.interceptor";
     AddRecipeComponent,
     RecipeDetailComponent,
     SignInComponent,
+    AccountComponent,
   ],
     imports: [
         BrowserModule,

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
+import {User} from "../../modules/User";
+import {UserService} from "../../services/user.service";
+
 
 @Component({
   selector: 'app-top-bar',
@@ -8,10 +11,8 @@ import {AuthService} from "../../services/auth.service";
 })
 export class TopBarComponent {
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private userservice: UserService) {
   }
-
-
 
   logout(): void {
     this.authService.logout();

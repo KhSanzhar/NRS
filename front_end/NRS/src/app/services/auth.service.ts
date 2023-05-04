@@ -25,8 +25,8 @@ export class AuthService {
     };
 
 
-    const token = this.getToken();
-    console.log('Authorization: ', `Bearer ${token}`);
+    // const token = this.getToken();
+    // console.log('Authorization: ', `Bearer ${token}`);
 
 
 
@@ -38,8 +38,6 @@ export class AuthService {
 
 
   }
-
-
 
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);

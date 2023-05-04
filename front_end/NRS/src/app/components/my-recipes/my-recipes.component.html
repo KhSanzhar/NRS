@@ -16,7 +16,7 @@
           <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name }} - {{ ingredient.amount }}</li>
         </ul>
         <ul class="recipe-instructions">
-          <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
+          <li *ngFor="let instruction of recipe.steps">{{ instruction }}</li>
         </ul>
         <div class="recipe-actions">
           <button (click)="recipe && recipe.id && deleteRecipe(recipe.id)">Удалить</button>

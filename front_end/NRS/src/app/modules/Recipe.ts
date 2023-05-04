@@ -1,13 +1,18 @@
-interface Ingredient {
+export interface Ingredient {
   name: string;
   amount: string;
+}
+
+export interface Category{
+  id: number,
+  name: string
 }
 export interface Recipe {
   id?: number;
   title: string;
-  category: string;
+  category: Category[];
   description: string;
   ingredients: Ingredient[];
-  instructions: string[];
+  steps: string[];
   image: string;
 }

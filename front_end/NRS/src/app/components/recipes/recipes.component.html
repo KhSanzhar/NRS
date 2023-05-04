@@ -1,30 +1,64 @@
-<div class="recipes">
-  <h2 class="page-title">Рецепты</h2>
-  <div class="categories-list">
-    <div class="category">
-      <button class="btn btn-link" (click)="selectCategory(null)" [class.active]="selectedCategory === null">Все</button>
-    </div>
-    <div class="category" *ngFor="let category of categories">
-      <button class="btn btn-link" (click)="selectCategory(category)" [class.active]="selectedCategory === category">{{ category }}</button>
-    </div>
-  </div>
+<!-- recipes.component.html -->
 
-  <div class="recipes-list">
-    <div class="recipe-card" *ngFor="let recipe of recipesToShow">
-      <div class="recipe-image">
-        <img [src]="recipe.image" alt="{{ recipe.title }}">
+<div class="container">
+  <h1>Recipes</h1>
+  <div *ngIf="categories.length === 0">
+    <p>Loading categories...</p>
+  </div>
+  <div *ngIf="categories.length > 0">
+    <div class="categories">
+      <h2>Categories</h2>
+      <ul>
+        <li>
+          <button (click)="getAllRecipes()">ALL</button>
+        </li>
+        <li *ngFor="let category of categories" (click)="getRecipesForCategory(category.id)">
+          {{ category.name }}
+        </li>
+      </ul>
+    </div>
+    <div class="recipes">
+      <h2>Recipes</h2>
+      <div *ngIf="recipes.length === 0">
+        <p>No recipes available for the selected category or loading all recipes...</p>
       </div>
-      <div class="recipe-details">
-        <h3 class="recipe-title">{{ recipe.title }}</h3>
-        <div class="recipe-category">{{ recipe.category }}</div>
-        <div class="recipe-description">{{ recipe.description }}</div>
-        <ul class="recipe-ingredients">
-          <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name }} - {{ ingredient.amount }}</li>
-        </ul>
-        <ul class="recipe-instructions">
-          <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
-        </ul>
+      <div *ngFor="let recipe of recipes">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.description }}</p>
+        <!-- Add more recipe details as needed -->
       </div>
     </div>
   </div>
 </div>
+
+
+<!--<div class="recipes">-->
+<!--  <h2 class="page-title">Рецепты</h2>-->
+<!--  <div class="categories-list">-->
+<!--    <div class="category">-->
+<!--      <button class="btn btn-link" (click)="selectCategory(null)" [class.active]="selectedCategory === null">Все</button>-->
+<!--    </div>-->
+<!--    <div class="category" *ngFor="let category of categories">-->
+<!--      <button class="btn btn-link" (click)="selectCategory(category)" [class.active]="selectedCategory === category">{{ category }}</button>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="recipes-list">-->
+<!--    <div class="recipe-card" *ngFor="let recipe of recipesToShow">-->
+<!--      <div class="recipe-image">-->
+<!--        <img [src]="recipe.image" alt="{{ recipe.title }}">-->
+<!--      </div>-->
+<!--      <div class="recipe-details">-->
+<!--        <h3 class="recipe-title">{{ recipe.title }}</h3>-->
+<!--        <div class="recipe-category">{{ recipe.category }}</div>-->
+<!--        <div class="recipe-description">{{ recipe.description }}</div>-->
+<!--        <ul class="recipe-ingredients">-->
+<!--          <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name }} - {{ ingredient.amount }}</li>-->
+<!--        </ul>-->
+<!--        <ul class="recipe-instructions">-->
+<!--          <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

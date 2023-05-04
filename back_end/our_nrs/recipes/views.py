@@ -13,10 +13,11 @@ from .premissions import IsOwnerStaffOrReadOnly
 # Create your views here.
 class RecipeListView(generics.ListCreateAPIView):
     serializer_class = RecipeSerializer
+    paginate_by = 2
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Recipe.objects.all().order_by('-created_at')
+        return Recipe.objects.all().order_by('-likes')
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user.profile)
@@ -61,7 +62,7 @@ class MyRecipeListView(generics.ListCreateAPIView):
     def get_queryset(self):
         user = self.request.user
         queryset = Recipe.objects.filter(author=user.profile)
-        return queryset
+        return queryset.order_by('-created_at')
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user.profile)

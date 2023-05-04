@@ -33,8 +33,19 @@ export class AddRecipeComponent implements OnInit {
     this.recipe.ingredients.push({ name: '', amount: '' });
   }
 
+  removeIngredient() {
+    if (this.recipe.ingredients.length > 1) {
+      this.recipe.ingredients.pop();
+    }
+  }
   addStep() {
     this.recipe.steps.push('');
+  }
+
+  removeStep() {
+    if (this.recipe.steps.length > 1) {
+      this.recipe.steps.pop();
+    }
   }
 
   onFileSelected(event: Event) {

@@ -23,14 +23,16 @@
         <input type="text" name="ingredient-amount-{{i}}" [(ngModel)]="ingredient.amount" placeholder="Количество" required>
       </div>
       <button type="button" (click)="addIngredient()">Добавить ингредиент</button>
+      <button *ngIf="recipe.ingredients.length > 1" type="button" (click)="removeIngredient()">Удалить ингредиент</button>
     </div>
     <div class="form-group">
       <label for="recipe-instructions">Инструкции:</label>
       <div id="recipe-instructions" *ngFor="let step of recipe.steps; let i = index">
-        <label> {{i + 1}}:</label>
+        <label>Шаг {{i + 1}}:</label>
         <input type="text" name="step-{{i}}" [(ngModel)]="recipe.steps[i]" placeholder="шаг" required>
       </div>
       <button type="button" (click)="addStep()">Добавить шаг</button>
+      <button *ngIf="recipe.steps.length > 1" type="button" (click)="removeStep()">Удалить шаг</button>
     </div>
     <div class="form-group">
       <label for="recipe-image">Фото:</label>

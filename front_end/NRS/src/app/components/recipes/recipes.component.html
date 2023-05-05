@@ -1,35 +1,49 @@
-<!-- recipes.component.html -->
+<div class="recipe-filter">
+  <button (click)="getAllRecipes()">All Recipes</button>
+  <button *ngFor="let category of categories" (click)="getRecipesForCategory(category.id)">{{category.name}}</button>
+</div>
 
-<div class="container">
-  <h1>Recipes</h1>
-  <div *ngIf="categories.length === 0">
-    <p>Loading categories...</p>
-  </div>
-  <div *ngIf="categories.length > 0">
-    <div class="categories">
-      <h2>Categories</h2>
-      <ul>
-        <li>
-          <button (click)="getAllRecipes()">ALL</button>
-        </li>
-        <li *ngFor="let category of categories" (click)="getRecipesForCategory(category.id)">
-          {{ category.name }}
-        </li>
-      </ul>
-    </div>
-    <div class="recipes">
-      <h2>Recipes</h2>
-      <div *ngIf="recipes.length === 0">
-        <p>No recipes available for the selected category or loading all recipes...</p>
-      </div>
-      <div *ngFor="let recipe of recipes">
-        <h3>{{ recipe.title }}</h3>
-        <p>{{ recipe.description }}</p>
-        <!-- Add more recipe details as needed -->
-      </div>
-    </div>
+
+<div class="recipes-list">
+  <div *ngFor="let recipe of recipes" class="recipe-card">
+    <h3>{{ recipe.title }}</h3>
+    <img [src]="recipe.image" alt="Recipe Image">
+    <p>{{ recipe.description }}</p>
+    <a [routerLink]="['/detail', recipe.id]">View Recipe</a>
   </div>
 </div>
+
+
+<!--<div class="container">-->
+<!--  <h1>Recipes</h1>-->
+<!--  <div *ngIf="categories.length === 0">-->
+<!--    <p>Loading categories...</p>-->
+<!--  </div>-->
+<!--  <div *ngIf="categories.length > 0">-->
+<!--    <div class="categories">-->
+<!--      <h2>Categories</h2>-->
+<!--      <ul>-->
+<!--        <li>-->
+<!--          <button (click)="getAllRecipes()">ALL</button>-->
+<!--        </li>-->
+<!--        <li *ngFor="let category of categories" (click)="getRecipesForCategory(category.id)">-->
+<!--          {{ category.name }}-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--    <div class="recipes">-->
+<!--      <h2>Recipes</h2>-->
+<!--      <div *ngIf="recipes.length === 0">-->
+<!--        <p>No recipes available for the selected category or loading all recipes...</p>-->
+<!--      </div>-->
+<!--      <div *ngFor="let recipe of recipes">-->
+<!--        <h3>{{ recipe.title }}</h3>-->
+<!--        <p>{{ recipe.description }}</p>-->
+<!--        &lt;!&ndash; Add more recipe details as needed &ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 
 <!--<div class="recipes">-->

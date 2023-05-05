@@ -26,18 +26,23 @@ export class AuthService {
         'Content-Type': 'application/json'
       })
     };
-
-
     // const token = this.getToken();
     // console.log('Authorization: ', `Bearer ${token}`);
-
-
 
     return this.http.post<Token>(`${this.apiUrl}login/`, data, httpOptions).pipe(
       tap((response: Token) => {
           localStorage.setItem(this.TOKEN_KEY, response.access);
         })
     );
+  }
+
+  getCurrentUser(): Observable<User> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.getToken()}`
+    });
+
+    return this.http.get<User>(`${this.apiUrl}`, {headers});
   }
 
   logout(): void {

@@ -1,16 +1,14 @@
-<div *ngIf="recipe">
-  <div class="recipe-image">
-    <img [src]="recipe.image" alt="{{ recipe.title }}">
-  </div>
-  <div class="recipe-details">
-    <h2 class="recipe-title">{{ recipe.title }}</h2>
-    <div class="recipe-category">{{ recipe.category }}</div>
-    <div class="recipe-description">{{ recipe.description }}</div>
-    <ul class="recipe-ingredients">
-      <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name }} - {{ ingredient.amount }}</li>
-    </ul>
-    <ul class="recipe-instructions">
-      <li *ngFor="let instruction of recipe.steps">{{ instruction }}</li>
-    </ul>
-  </div>
+<div *ngIf="recipe" class="recipe-detail">
+  <h2>{{ recipe.title }}</h2>
+  <img [src]="recipe.image" alt="Recipe Image">
+  <p>{{ recipe.description }}</p>
+  <h3>Ingredients:</h3>
+  <ul>
+    <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient.name }} - {{ ingredient.amount }}</li>
+  </ul>
+  <h3>Steps:</h3>
+  <ol>
+    <li *ngFor="let step of recipe.steps">{{ step }}</li>
+  </ol>
+  <a routerLink="/recipes">Back to recipes</a>
 </div>

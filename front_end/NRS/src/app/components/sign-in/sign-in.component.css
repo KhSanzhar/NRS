@@ -1,61 +1,72 @@
-.login-form {
+.form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  gap: 10px;
+  background-color: white;
+  padding: 2.5em;
+  border-radius: 25px;
+  transition: .4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
+  position: relative;
+  width: 40%;
+  height: auto;
+  left: 350px;
+  top: 40px;
 }
 
-.form-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.form:hover {
+  transform: translateX(-0.5em) translateY(-0.5em);
+  border: 1px solid #171717;
+  box-shadow: 10px 10px 0px #666666;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f2f2f2;
+.heading {
+  color: black;
+  padding-bottom: 2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.input {
+  border-radius: 5px;
+  border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+  outline: none;
+  padding: 0.7em;
+  transition: .4s ease-in-out;
+}
+
+.input:hover {
+  box-shadow: 6px 6px 0px #969696,
+  -3px -3px 10px #ffffff;
+}
+
+.input:focus {
+  background: #ffffff;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+}
+
+.form .btn {
+  margin-top: 2em;
+  align-self: center;
+  padding: 0.7em;
+  padding-left: 1em;
+  padding-right: 1em;
   border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-  padding: 3rem;
-  width: 400px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-label {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-input {
-  border-radius: 5px;
   border: none;
-  padding: 0.5rem;
-  font-size: 1rem;
-  width: 100%;
+  color: black;
+  transition: .4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;
 }
 
-button[type="submit"] {
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.2rem;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.2s ease-in-out;
-  width: 100%;
+.form .btn:hover {
+  box-shadow: 6px 6px 0px #969696,
+  -3px -3px 10px #ffffff;
+  transform: translateX(-0.5em) translateY(-0.5em);
 }
 
-button[type="submit"]:hover {
-  background-color: #0062cc;
+.form .btn:active {
+  transition: .2s;
+  transform: translateX(0em) translateY(0em);
+  box-shadow: none;
 }

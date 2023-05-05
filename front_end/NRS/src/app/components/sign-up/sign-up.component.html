@@ -1,22 +1,6 @@
-<div class="registration-form">
-  <h2 class="form-title">Регистрация</h2>
-  <form (ngSubmit)="onSubmit()" >
-    <div class="form-group">
-      <label for="username">Имя пользователя:</label>
-      <input type="text" id="username" [(ngModel)]="username" name="username" required>
-    </div>
-<!--    <div class="form-group">-->
-<!--      <label for="email">Email:</label>-->
-<!--      <input type="email" id="email" name="email" required>-->
-<!--    </div>-->
-    <div class="form-group">
-      <label for="password">Пароль:</label>
-      <input type="password" id="password" [(ngModel)]="password" name="password" required>
-    </div>
-<!--    <div class="form-group">-->
-<!--      <label for="confirm-password">Подтверждение пароля:</label>-->
-<!--      <input type="password" id="confirm-password" name="confirm-password" required>-->
-<!--    </div>-->
-    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-  </form>
-</div>
+<form class="form" (ngSubmit)="onSubmit()">
+  <p class="heading">Регистрация</p>
+  <input class="input" type="text" [(ngModel)]="username" name="username" placeholder="Имя пользователя" required >
+  <input class="input" type="password" [(ngModel)]="password" name="password" placeholder="Пароль" required >
+  <button type="submit" class="btn">Зарегистрироваться</button>
+</form>

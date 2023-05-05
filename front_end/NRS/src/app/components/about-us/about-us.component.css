@@ -3,6 +3,7 @@
   width: 80%;
   max-width: 1200px;
   text-align: justify;
+  font-family: "Poppins", sans-serif, "Crimson Text", serif
 }
 
 .about h2 {
@@ -15,18 +16,10 @@
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 40px;
+
 }
 
-.about a {
-  display: inline-block;
-  margin-right: 20px;
-  color: #fff;
-  background-color: #007bff;
-  border-radius: 5px;
-  padding: 10px;
-  text-decoration: none;
-  font-size: 1.2rem;
-}
+
 
 .about a:hover {
   background-color: #0062cc;
@@ -34,6 +27,8 @@
 
 .about i {
   margin-right: 10px;
+  font-family: "Poppins", sans-serif;
+  mix-blend-mode:screen;
 }
 
 @media screen and (max-width: 768px) {
@@ -54,4 +49,24 @@
     font-size: 1rem;
     padding: 8px;
   }
+}
+
+.about a {
+  display: inline-block;
+  margin-right: 20px;
+  color: #fff;
+  background-color: dodgerblue;
+  border-radius: 4px;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  font-size: 17px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+
+.about a:hover {
+  background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+}
+
+.about a:active {
+  transform: translate(0em, 0.2em);
 }

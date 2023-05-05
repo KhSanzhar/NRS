@@ -6,9 +6,10 @@
 
 <div class="recipes-list">
   <div *ngFor="let recipe of recipes" class="recipe-card">
-    <h3>{{ recipe.title }}</h3>
+
     <img [src]="recipe.image" alt="Recipe Image">
-    <p>{{ recipe.description }}</p>
+
+    <h3>{{ recipe.title }}</h3>
     <a class="btn recipe-card-btn" [routerLink]="['/detail', recipe.id]">View Recipe</a>
   </div>
 </div>

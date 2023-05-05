@@ -11,15 +11,14 @@
     <li *ngFor="let step of recipe.steps">{{ step }}</li>
   </ol>
   <div class="comments-section">
-    <h3><a routerLink="/comments">Comments</a></h3>
+    <h3>Comments</h3>
     <ul>
       <li *ngFor="let comment of comments">
         <p><strong>{{ comment.author }}</strong> <span>{{ comment.created_at | date:'short' }}</span></p>
         <p>{{ comment.text }}</p>
       </li>
     </ul>
-
-    <
+    <a routerLink="/comments">Add comment</a>
   </div>
 
 <!--  <button (click)="onUpdate()">Update Recipe</button>-->

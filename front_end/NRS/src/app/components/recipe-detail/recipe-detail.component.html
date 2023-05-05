@@ -1,6 +1,7 @@
 <div *ngIf="recipe" class="recipe-detail">
-  <h2>{{ recipe.title }}</h2>
   <img [src]="recipe.image" alt="Recipe Image">
+  <p>{{ recipe.name }}</p>
+
   <p>{{ recipe.description }}</p>
   <h3>Ingredients:</h3>
   <ul>

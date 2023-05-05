@@ -11,7 +11,7 @@ import { HttpEvent, HttpEventType } from '@angular/common/http';
 })
 export class AddRecipeComponent implements OnInit {
   recipe: Recipe = {
-    title: '',
+    name: '',
     category: [],
     description: '',
     ingredients: [],

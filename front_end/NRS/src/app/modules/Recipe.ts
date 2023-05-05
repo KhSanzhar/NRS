@@ -9,7 +9,7 @@ export interface Category{
 }
 export interface Recipe {
   id?: number;
-  title: string;
+  name: string;
   category: Category[];
   description: string;
   ingredients: Ingredient[];

@@ -6,10 +6,10 @@
   <div class="recipes-list">
     <div class="recipe-card" *ngFor="let recipe of recipes">
       <div class="recipe-image">
-        <img [src]="recipe.image" alt="{{ recipe.title }}">
+        <img [src]="recipe.image" alt="{{ recipe.name }}">
       </div>
       <div class="recipe-details">
-        <h3 class="recipe-title">{{ recipe.title }}</h3>
+        <h3 class="recipe-title">{{ recipe.name }}</h3>
         <div class="recipe-category">{{ recipe.category }}</div>
         <div class="recipe-description">{{ recipe.description }}</div>
         <ul class="recipe-ingredients">

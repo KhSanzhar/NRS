@@ -12,7 +12,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class CommentsComponent implements OnInit {
   newCommentText = '';
-  recipe: Recipe = { id: 0, title: '', category: [], description: '', ingredients: [], steps: [], image: '' };
+  recipe: Recipe = { id: 0, name: '', category: [], description: '', ingredients: [], steps: [], image: '' };
   comments: Comments[] = [];
 
   constructor(private recipeService: RecipeServiceService) {}

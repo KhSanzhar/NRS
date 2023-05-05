@@ -40,7 +40,7 @@ export class RecipeServiceService {
 // , selectedFile: File
   addRecipe(recipe: Recipe) {
     const payload = {
-      name: recipe.title,
+      name: recipe.name,
       categories: recipe.category,
       description: recipe.description,
       ingredients: recipe.ingredients,

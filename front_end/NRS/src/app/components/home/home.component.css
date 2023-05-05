@@ -1,4 +1,14 @@
 /*background: linear-gradient(to bottom, #F7E9D9, #D7BFA6); мощьный градиент*/
+img{
+  position: absolute;
+  max-width: 100vh;
+  left: 400px;
+  top:23vh;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
 
 #topspace {
   height: 20vh;
@@ -27,21 +37,24 @@
       width: 25vw;
       padding: 0 2.5%;
       text-align: center;
+      mix-blend-mode: color-dodge;
+      color:lightsalmon;
     }
 
       .text-cont h1{
         size: 15px;
       }
 
-    .desc-cont img {
-      width: 40vw;
-      height: 50vh;
+    /*.desc-cont img {*/
+    /*  width: 40vw;*/
+    /*  height: 50vh;*/
 
-    }
+    /*}*/
 
   /*.chouse-cont{
     margin: 5vh 0;
     width: 90vw;
     height: 300px;
   }*/
+
 

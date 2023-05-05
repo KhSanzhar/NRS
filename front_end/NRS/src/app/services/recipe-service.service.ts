@@ -28,14 +28,23 @@ export class RecipeServiceService {
     return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/`, {headers});
   }
 
-  addRecipe(recipe: Recipe, selectedFile: File) {
+  getMyRecipes(): Observable<Recipe[]> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.get<Recipe[]>(`${this.apiUrl}/my-recipes/`, {headers});
+  }
+
+// , selectedFile: File
+  addRecipe(recipe: Recipe) {
     const payload = {
       name: recipe.title,
       categories: recipe.category,
       description: recipe.description,
       ingredients: recipe.ingredients,
       steps: recipe.steps,
-      image: selectedFile
+      // image: selectedFile
     };
 
 
@@ -60,17 +69,13 @@ export class RecipeServiceService {
     return this.http.delete<void>(url, {headers});
   }
 
-  getRecipeById(id: number): Observable<Recipe | undefined> {
+  getRecipeById(id: number): Observable<Recipe> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.authService.getToken()}`
     });
 
-    const url = `${this.apiUrl}${id}/`;
-    return this.http.get<Recipe>(url, { headers }).pipe(
-      catchError(() => {
-        return of(undefined);
-      })
-    );
+    const url = `${this.apiUrl}/recipes/${id}/`;
+    return this.http.get<Recipe>(url, { headers });
   }
 
   getRecipesByCategory(categoryId: number): Observable<Recipe[]> {
@@ -88,5 +93,14 @@ export class RecipeServiceService {
     });
 
     return this.http.get<Recipe[]>(`${this.apiUrl}/recipes/`, {headers});
+  }
+
+  updateRecipe(id: number, updatedRecipe: Recipe): Observable<Recipe> {
+    const headers = new HttpHeaders({
+      'Content_Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.put<Recipe>(`${this.apiUrl}/recipes/${id}`, updatedRecipe, {headers});
   }
 }

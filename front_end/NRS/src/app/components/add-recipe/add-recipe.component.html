@@ -34,13 +34,13 @@
       <button type="button" (click)="addStep()">Добавить шаг</button>
       <button *ngIf="recipe.steps.length > 1" type="button" (click)="removeStep()">Удалить шаг</button>
     </div>
-    <div class="form-group">
-      <label for="recipe-image">Фото:</label>
-      <input type="file" id="recipe-image" name="recipe-image" (change)="onFileSelected($event)">
-    </div>
-    <div *ngIf="recipe.image" class="form-group">
-      <img [src]="recipe.image" alt="Recipe Image">
-    </div>
+<!--    <div class="form-group">-->
+<!--      <label for="recipe-image">Фото:</label>-->
+<!--      <input type="file" id="recipe-image" name="recipe-image" (change)="onFileSelected($event)">-->
+<!--    </div>-->
+<!--    <div *ngIf="recipe.image" class="form-group">-->
+<!--      <img [src]="recipe.image" alt="Recipe Image">-->
+<!--    </div>-->
     <div class="form-buttons">
       <button type="submit">Добавить рецепт</button>
       <button type="button" (click)="cancel()">Отмена</button>

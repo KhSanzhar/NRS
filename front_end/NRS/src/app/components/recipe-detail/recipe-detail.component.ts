@@ -11,6 +11,8 @@ import {Recipe} from "../../modules/Recipe";
 export class RecipeDetailComponent implements OnInit{
   recipe: Recipe | undefined;
 
+  updatedRecipe: Recipe | undefined;
+
   constructor(private recipeService: RecipeServiceService, private route: ActivatedRoute) {
   }
 
@@ -20,5 +22,7 @@ export class RecipeDetailComponent implements OnInit{
       this.recipe = recipe;
     });
   }
+
+
 
 }

@@ -56,20 +56,12 @@ export class CommentsComponent implements OnInit {
   }
 
   addComment(): void {
-    if (this.newCommentText.trim() === '') {
-      console.error('Comment text cannot be empty.');
-      return;
-    }
-
-    const text = this.newCommentText;
 
     if(this.recipe.id)
-    this.recipeService.addComment(this.recipe.id, text).subscribe(
+    this.recipeService.addComment(this.recipe.id, this.newCommentText).subscribe(
       (comment: Comments) => {
-        // Add the new comment to the comments array
         this.comments.push(comment);
-        // Clear the input field
-        this.newCommentText = '';
+
       },
       (error: HttpErrorResponse) => {
         console.error('Failed to add comment:', error);
@@ -92,4 +84,5 @@ export class CommentsComponent implements OnInit {
 
     );
   }
+
 }

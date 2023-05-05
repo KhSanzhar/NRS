@@ -61,13 +61,17 @@ export class RecipeServiceService {
     });
   }
 
-  deleteRecipe(id: number): Observable<void> {
+  deleteRecipe(id: number | null): Observable<Recipe> {
+
+    if(id == null)
+      return of();
+
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.authService.getToken()}`
     });
 
-    const url = `${this.apiUrl}${id}/`;
-    return this.http.delete<void>(url, {headers});
+    const url = `${this.apiUrl}/recipes/${id}`;
+    return this.http.delete<Recipe>(url, {headers});
   }
 
 

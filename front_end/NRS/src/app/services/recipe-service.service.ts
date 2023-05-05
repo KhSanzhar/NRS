@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Category, Recipe} from '../modules/Recipe';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {catchError, Observable, of} from "rxjs";
 
@@ -37,8 +37,6 @@ export class RecipeServiceService {
       steps: recipe.steps,
       image: selectedFile
     };
-
-
 
 
     const headers = new HttpHeaders({

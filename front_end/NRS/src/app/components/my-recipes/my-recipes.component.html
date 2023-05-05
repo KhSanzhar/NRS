@@ -21,6 +21,7 @@
         <div class="recipe-actions">
           <button (click)="recipe && recipe.id && deleteRecipe(recipe.id)">Удалить</button>
         </div>
+        <a [routerLink]="['/detail', recipe.id]">View Recipe</a>
       </div>
     </div>
   </div>

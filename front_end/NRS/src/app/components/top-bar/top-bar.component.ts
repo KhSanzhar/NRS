@@ -11,12 +11,12 @@ import {UserService} from "../../services/user.service";
 })
 export class TopBarComponent implements OnInit{
 
-
   user: User = {
     id: 0,
     name: '',
     image: ''
   }
+
   constructor(public authService: AuthService, private userservice: UserService) {
   }
 
@@ -25,12 +25,9 @@ export class TopBarComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.userservice.getUserInfo().subscribe(
+    this.authService.getCurrentUser().subscribe(
       (user: User) => {
         this.user = user;
-      },
-      error => {
-        console.log('Failed to get user_info: ', error);
       }
     )
   }

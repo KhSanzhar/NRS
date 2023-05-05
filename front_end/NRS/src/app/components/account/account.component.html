@@ -1,0 +1,47 @@
+<div class="account-page">
+  <h2 class="page-title">My Account</h2>
+
+  <div class="account-details">
+    <h3 class="section-title">Account Details</h3>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <span id="username">{{currentUser.name}}</span>
+    </div>
+    <div class="form-group">
+      <label>User Image:</label>
+      <img [src]="currentUser.image" alt="User Image" class="user-image">
+    </div>
+  </div>
+
+
+<!--  <div class="form-group">-->
+<!--    <label for="user-image-input">Change User Image:</label>-->
+<!--    <input type="file" id="user-image-input" name="user-image-input" (change)="onUserImageSelected($event)">-->
+<!--  </div>-->
+
+  <!--  <div class="change-password">-->
+<!--    <h3 class="section-title">Change Password</h3>-->
+<!--    <form (ngSubmit)="onChangePassword()">-->
+<!--      <div class="form-group">-->
+<!--        <label for="current-password">Current Password:</label>-->
+<!--        <input type="password" id="current-password" name="current-password" [(ngModel)]="changePassword.currentPassword" required>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="new-password">New Password:</label>-->
+<!--        <input type="password" id="new-password" name="new-password" [(ngModel)]="changePassword.newPassword" required>-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="confirm-password">Confirm New Password:</label>-->
+<!--        <input type="password" id="confirm-password" name="confirm-password" [(ngModel)]="changePassword.confirmPassword" required>-->
+<!--      </div>-->
+<!--      <div class="form-buttons">-->
+<!--        <button type="submit">Change Password</button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </div>-->
+
+  <div class="account-actions">
+    <h3 class="section-title">Account Actions</h3>
+    <button (click)="onLogout()">Logout</button>
+  </div>
+</div>

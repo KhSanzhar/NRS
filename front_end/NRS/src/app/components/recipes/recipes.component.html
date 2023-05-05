@@ -1,6 +1,6 @@
 <div class="recipe-filter">
   <button class="btn" (click)="getAllRecipes()">All Recipes</button>
-  <button class="btn" *ngFor="let category of categories" (click)="getRecipesForCategory(category.id)">{{category.name}}</button>
+  <button class="btn" *ngFor="let category of categories" (click)="onCategoryClick(category.id)">{{category.name}}</button>
 </div>
 
 

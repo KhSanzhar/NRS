@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Category, Recipe} from "../../modules/Recipe";
 import {RecipeServiceService} from "../../services/recipe-service.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 
 @Component({
@@ -13,7 +13,8 @@ export class RecipesComponent implements OnInit{
   recipes: Recipe[] = [];
   categories: Category[] = [];
 
-  constructor(private recipeService: RecipeServiceService, private route: ActivatedRoute) {
+  constructor(private recipeService: RecipeServiceService, private route: Router) {
+    this.router = route;
   }
 
   ngOnInit(): void {
@@ -25,8 +26,10 @@ export class RecipesComponent implements OnInit{
     this.getCategories();
   }
 
-
-
+  router: Router;
+  onCategoryClick(categoryId: number): void {
+    this.router.navigate(['/category', categoryId]);
+  }
   getCategories() {
     this.recipeService.getCategories().subscribe(
       (categories: Category[]) => {

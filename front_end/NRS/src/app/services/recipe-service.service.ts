@@ -3,6 +3,7 @@ import {Category, Recipe} from '../modules/Recipe';
 import {HttpClient, HttpEvent, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "./auth.service";
 import {catchError, Observable, of} from "rxjs";
+import {Comments} from "../modules/Comments";
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,8 @@ export class RecipeServiceService {
     return this.http.delete<void>(url, {headers});
   }
 
+
+
   getRecipeById(id: number): Observable<Recipe> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.authService.getToken()}`
@@ -83,7 +86,7 @@ export class RecipeServiceService {
       Authorization: `Bearer ${this.authService.getToken()}`
     });
     // const url = 'http://localhost:8000/category/?category=${categoryId}'
-    return this.http.get<Recipe[]>(`${this.apiUrl}/category/?category=${categoryId}`);
+    return this.http.get<Recipe[]>(`${this.apiUrl}/category/${categoryId}`, {headers});
     // return this.http.get<Recipe[]>(url, {headers});
   }
 
@@ -102,5 +105,33 @@ export class RecipeServiceService {
     });
 
     return this.http.put<Recipe>(`${this.apiUrl}/recipes/${id}`, updatedRecipe, {headers});
+  }
+
+
+  getCommetsOfRecipe(id: number): Observable<Comments[]> {
+    const headers = new HttpHeaders({
+      'Content_Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.get<Comments[]>(`${this.apiUrl}/recipes/${id}/comment/`, {headers});
+  }
+
+  addComment(id: number, comment: string): Observable<Comments> {
+    const headers = new HttpHeaders({
+      'Content_Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.post<Comments>(`${this.apiUrl}/recipes/${id}/comment`, comment, {headers});
+  }
+
+  deleteComment(id: number): Observable<Comments> {
+    const headers = new HttpHeaders({
+      'Content_Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.delete<Comments>(`${this.apiUrl}/recipes/0/comment/${id}`, {headers});
   }
 }

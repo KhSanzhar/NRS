@@ -21,7 +21,7 @@ export class UserService {
 
   getUserName():string {
     if(this.currentUser) {
-      return this.currentUser.name;
+      return this.currentUser.user;
     }
     return '';
   }

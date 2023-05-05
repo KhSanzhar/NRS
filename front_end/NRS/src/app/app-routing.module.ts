@@ -10,6 +10,8 @@ import {RecipeDetailComponent} from "./components/recipe-detail/recipe-detail.co
 import {SignInComponent} from "./components/sign-in/sign-in.component";
 import {AuthGuard} from "./services/auth.guard";
 import {AccountComponent} from "./components/account/account.component";
+import {CategoryRecipesComponent} from "./components/category-recipes/category-recipes.component";
+import {CommentsComponent} from "./components/comments/comments.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path: 'add-recipe', component: AddRecipeComponent, canActivate: [AuthGuard]},
   {path: 'recipes/:category', component: RecipesComponent, canActivate: [AuthGuard]},
     {path: 'detail/:id', component: RecipeDetailComponent, canActivate: [AuthGuard]},
-  {path: 'account', component: AccountComponent, canActivate: [AuthGuard]}
+  {path: 'account', component: AccountComponent, canActivate: [AuthGuard]},
+  {path: 'category/:id', component: CategoryRecipesComponent, canActivate: [AuthGuard]},
+  {path: 'comments', component: CommentsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

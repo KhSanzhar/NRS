@@ -13,7 +13,7 @@ export class TopBarComponent implements OnInit{
 
   user: User = {
     id: 0,
-    name: '',
+    user: '',
     image: ''
   }
 

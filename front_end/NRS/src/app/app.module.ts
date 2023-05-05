@@ -17,6 +17,8 @@ import {AuthService} from "./services/auth.service";
 import {AuthGuard} from "./services/auth.guard";
 import {TokenInterceptor} from "./services/token.interceptor";
 import { AccountComponent } from './components/account/account.component';
+import { CategoryRecipesComponent } from './components/category-recipes/category-recipes.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { AccountComponent } from './components/account/account.component';
     RecipeDetailComponent,
     SignInComponent,
     AccountComponent,
+    CategoryRecipesComponent,
+    CommentsComponent,
   ],
     imports: [
         BrowserModule,

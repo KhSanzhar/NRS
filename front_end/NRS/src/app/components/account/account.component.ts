@@ -13,7 +13,7 @@ export class AccountComponent implements OnInit{
 
   currentUser: User = {
     id: 0,
-    name: '',
+    user: '',
     image: ''
   }
 
@@ -22,7 +22,7 @@ export class AccountComponent implements OnInit{
     this.route = router
   }
   ngOnInit() {
-    this.authService.getCurrentUser().subscribe(
+    this.userService.getUserInfo().subscribe(
       (user: User) => {
         this.currentUser = user;
       },

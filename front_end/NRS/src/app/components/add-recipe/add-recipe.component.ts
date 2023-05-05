@@ -70,30 +70,43 @@ export class AddRecipeComponent implements OnInit {
     );
   }
 
+  // onSubmit() {
+  //   if (this.selectedFile) {
+  //     this.recipe.category = [this.selectedCategory];
+  //     this.recipeService.addRecipe(this.recipe, this.selectedFile).subscribe(
+  //       (event: HttpEvent<Recipe>) => {
+  //         if (event.type === HttpEventType.UploadProgress) {
+  //           if (event.total) {
+  //             console.log('Upload progress: ', Math.round(event.loaded / event.total * 100) + '%');
+  //           }
+  //         } else if (event.type === HttpEventType.Response) {
+  //           console.log('Recipe added successfully: ', event.body);
+  //           this.router.navigate(['/my-recipes']);
+  //           // show success message
+  //         }
+  //       },
+  //       (error) => {
+  //         console.error('Failed to add recipe:', error);
+  //         // show error message
+  //       }
+  //     );
+  //   } else {
+  //     console.error('Please select an image file.');
+  //     // show error message
+  //   }
+  // }
+
   onSubmit() {
-    if (this.selectedFile) {
-      this.recipe.category = [this.selectedCategory];
-      this.recipeService.addRecipe(this.recipe, this.selectedFile).subscribe(
-        (event: HttpEvent<Recipe>) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            if (event.total) {
-              console.log('Upload progress: ', Math.round(event.loaded / event.total * 100) + '%');
-            }
-          } else if (event.type === HttpEventType.Response) {
-            console.log('Recipe added successfully: ', event.body);
-            this.router.navigate(['/my-recipes']);
-            // show success message
-          }
-        },
-        (error) => {
-          console.error('Failed to add recipe:', error);
-          // show error message
-        }
-      );
-    } else {
-      console.error('Please select an image file.');
-      // show error message
-    }
+    this.recipe.category = [this.selectedCategory];
+    this.recipeService.addRecipe(this.recipe).subscribe(
+      (response) => {
+        console.log('Recipe added successfully: ', response);
+        this.router.navigate(['/my-recipes']);
+      },
+      error => {
+        console.error('Failed to add recipe: ', error);
+      }
+    )
   }
 
   cancel(): void {

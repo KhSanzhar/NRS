@@ -1,92 +1,110 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #f2f2f2;
-}
-
 .add-recipe-form {
-  width: 500px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-  background-image: linear-gradient(to bottom, #f2f2f2, #fff);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  padding: 2.5em;
+  border-radius: 25px;
+  transition: .4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
+  position: relative;
+  top: 20px;
+  width: 50%;
+  left: 300px;
+  justify-content: center;
+  align-content: center;
+}
+
+.add-recipe-form:hover {
+  transform: translateX(-0.5em) translateY(-0.5em);
+  border: 1px solid #171717;
+  box-shadow: 10px 10px 0px #666666;
 }
 
 .form-title {
-  font-size: 24px;
-  margin-bottom: 20px;
+  color: black;
+  padding-bottom: 2em;
   text-align: center;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  font-size: 16px;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
-input[type="text"],
-textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
+  border-radius: 5px;
+  border: 1px solid whitesmoke;
+  background-color: whitesmoke;
+  outline: none;
+  padding: 0.7em;
+  transition: .4s ease-in-out;
   width: 100%;
-  padding: 10px;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  box-shadow: 6px 6px 0px #969696,
+  -3px -3px 10px #ffffff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  background: #ffffff;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+}
+
+.form-buttons button {
+  margin-top: 2em;
+  align-self: center;
+  padding: 0.7em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-radius: 10px;
+  border: none;
+  color: black;
+  transition: .4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;
+}
+
+.form-buttons button:hover {
+  box-shadow: 6px 6px 0px #969696,
+  -3px -3px 10px #ffffff;
+  transform: translateX(-0.5em) translateY(-0.5em);
+}
+
+.form-buttons button:active {
+  transition: .2s;
+  transform: translateX(0em) translateY(0em);
+  box-shadow: none;
+}
+
+.form-group button[type="button"] {
+  margin-top: 0.5em;
+  padding: 0.5em;
   border-radius: 5px;
   border: none;
-  background-color: #f2f2f2;
+  color: black;
+  background-color: whitesmoke;
+  transition: .4s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;
 }
 
-input[type="text"]:focus,
-textarea:focus {
-  outline: none;
-  background-color: #fff;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+.form-group button[type="button"]:hover {
+  background-color: whitesmoke;
+  color: black;
+  box-shadow: 6px 6px 0px #969696,
+  -3px -3px 10px #ffffff;
+  transform: translateX(-0.5em) translateY(-0.5em);
 }
 
-.form-buttons {
-  text-align: center;
-  margin-top: 20px;
+.form-group button[type="button"]:active {
+  transition: .2s;
+  transform: translateX(0em) translateY(0em);
+  box-shadow: none;
 }
 
-button[type="submit"],
-button[type="button"] {
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: #4CAF50;
-  color: #fff;
-  font-size: 16px;
+.form-group label {
   font-weight: bold;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-button[type="submit"]:hover,
-button[type="button"]:hover {
-  background-color: #3E8E41;
-}
-
-button[type="submit"]:active,
-button[type="button"]:active {
-  background-color: #3E8E41;
-  transform: translateY(2px);
-}
-
-button[type="submit"]:focus,
-button[type="button"]:focus {
-  outline: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
+  margin-bottom: 0.5em;
 }

@@ -10,8 +10,7 @@
   position: relative;
   width: 40%;
   height: auto;
-  left: 350px;
-  top: 40px;
+  margin: 8% 28%;
 }
 
 .form:hover {

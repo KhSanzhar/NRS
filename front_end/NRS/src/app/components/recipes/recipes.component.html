@@ -1,6 +1,6 @@
 <div class="recipe-filter">
-  <button (click)="getAllRecipes()">All Recipes</button>
-  <button *ngFor="let category of categories" (click)="getRecipesForCategory(category.id)">{{category.name}}</button>
+  <button class="btn" (click)="getAllRecipes()">All Recipes</button>
+  <button class="btn" *ngFor="let category of categories" (click)="getRecipesForCategory(category.id)">{{category.name}}</button>
 </div>
 
 
@@ -9,7 +9,7 @@
     <h3>{{ recipe.title }}</h3>
     <img [src]="recipe.image" alt="Recipe Image">
     <p>{{ recipe.description }}</p>
-    <a [routerLink]="['/detail', recipe.id]">View Recipe</a>
+    <a class="btn recipe-card-btn" [routerLink]="['/detail', recipe.id]">View Recipe</a>
   </div>
 </div>
 

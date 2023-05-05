@@ -1,13 +1,11 @@
 /*background: linear-gradient(to bottom, #F7E9D9, #D7BFA6); мощьный градиент*/
 img{
   position: absolute;
-  max-width: 100vh;
-  left: 400px;
-  top:23vh;
+  left: 600px;
+  width: 120%;
+  top:-5vh;
   border-radius: 10px;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
+  display: flex;
 }
 
 #topspace {
@@ -37,8 +35,9 @@ img{
       width: 25vw;
       padding: 0 2.5%;
       text-align: center;
-      mix-blend-mode: color-dodge;
-      color:lightsalmon;
+      position: relative;
+      right: 400px;
+      color:black;
     }
 
       .text-cont h1{

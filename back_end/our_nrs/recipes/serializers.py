@@ -31,6 +31,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     author = ProfileSerializer(default=serializers.CurrentUserDefault(), read_only=True)
     categories = serializers.ListSerializer(child=serializers.CharField())
     ingredients = IngredientSerializer(many=True)
+    image = serializers.ImageField(required=False)
     steps = serializers.ListSerializer(child=serializers.CharField())
 
     class Meta:

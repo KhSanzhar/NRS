@@ -21,6 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
+    image = serializers.ImageField(required=False)
 
     class Meta:
         model = Profile

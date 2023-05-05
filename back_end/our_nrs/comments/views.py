@@ -16,7 +16,7 @@ class RecipeComentsListView(generics.ListCreateAPIView):
     def get_queryset(self):
         recipe_id = self.kwargs['id']
         recipe = get_object_or_404(Recipe, id=recipe_id)
-        return recipe.comments.all()
+        return recipe.comments.all().order_by('-created_at')
 
     def perform_create(self, serializer):
         recipe_id = self.kwargs['id']

@@ -17,7 +17,7 @@ class RecipeListView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Recipe.objects.all().order_by('-likes')
+        return Recipe.objects.all().order_by('-created_at')
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user.profile)
